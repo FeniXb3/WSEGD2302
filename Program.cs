@@ -1,11 +1,24 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System;
+
 Console.WriteLine("Provide sign player 1");
 string firstSign = Console.ReadLine();
-Console.WriteLine(firstSign);
+
+//if (!(firstSign == "rock" || firstSign == "paper" || firstSign == "scissors"))
+//if ((firstSign == "rock" || firstSign == "paper" || firstSign == "scissors") == false)
+while (firstSign != "rock" && firstSign != "paper" && firstSign != "scissors")
+{
+	Console.WriteLine("wrong sign");
+	firstSign = Console.ReadLine();
+}
 
 Console.WriteLine("Provide sign player 2");
 string secondSign = Console.ReadLine();
-Console.WriteLine(secondSign);
+
+while (secondSign != "rock" && secondSign != "paper" && secondSign != "scissors")
+{
+	Console.WriteLine("wrong sign");
+	secondSign = Console.ReadLine();
+}
 
 if (firstSign == secondSign)
 {
