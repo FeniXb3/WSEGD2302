@@ -1,33 +1,34 @@
-﻿using System;
+﻿string[] availableSigns = {"rock", "paper", "scissors"};
 
 while(true)
 {
 	Console.WriteLine("Provide sign player 1");
 	string firstSign = Console.ReadLine();
+
+	//while (firstSign != "rock" && firstSign != "paper" && firstSign != "scissors" && firstSign != "quit")
+	while (!availableSigns.Contains(firstSign) && firstSign != "quit")
+	{
+		Console.WriteLine("wrong sign");
+		firstSign = Console.ReadLine();
+	}
+
 	if (firstSign == "quit")
 	{
 		break;
 	}
 
-	//if (!(firstSign == "rock" || firstSign == "paper" || firstSign == "scissors"))
-	//if ((firstSign == "rock" || firstSign == "paper" || firstSign == "scissors") == false)
-	while (firstSign != "rock" && firstSign != "paper" && firstSign != "scissors")
-	{
-		Console.WriteLine("wrong sign");
-		firstSign = Console.ReadLine();
-		if (firstSign == "quit")
-		{
-			break;
-		}
-	}
-
 	Console.WriteLine("Provide sign player 2");
 	string secondSign = Console.ReadLine();
 
-	while (secondSign != "rock" && secondSign != "paper" && secondSign != "scissors")
+	while (!availableSigns.Contains(secondSign) && secondSign != "quit")
 	{
 		Console.WriteLine("wrong sign");
 		secondSign = Console.ReadLine();
+	}
+
+	if (secondSign == "quit")
+	{
+		break;
 	}
 
 	if (firstSign == secondSign)
