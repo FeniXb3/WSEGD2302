@@ -2,7 +2,13 @@
 int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
 
-while(true)
+int winsToWin = 3;
+
+// bool isPlaying = true;
+
+//while (isPlaying)
+// while(!(firstPlayerPoints >= 3 || secondPlayerPoints >= 3))
+while(firstPlayerPoints < winsToWin && secondPlayerPoints < winsToWin)
 {
 	Console.WriteLine("Provide sign player 1");
 	string? firstSign = Console.ReadLine()?.ToLower().Trim();
@@ -53,6 +59,12 @@ while(true)
 
 	//Console.WriteLine("[Player 1] " + firstPlayerPoints + " : " + secondPlayerPoints + " [Player 2]");
 	Console.WriteLine($"[Player 1] {firstPlayerPoints} : {secondPlayerPoints} [Player 2]");
+
+	// if (firstPlayerPoints >= 3 || secondPlayerPoints >= 3)
+	// {
+	// 	// break;
+	// 	isPlaying = false;
+	// }
 }
 
 Console.WriteLine("kthxbye");
