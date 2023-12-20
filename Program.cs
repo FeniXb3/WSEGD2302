@@ -56,3 +56,5 @@ while(true)
 }
 
 Console.WriteLine("kthxbye");
+Console.WriteLine("Press any key to close");
+Console.ReadKey();
