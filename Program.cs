@@ -3,7 +3,6 @@ int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
 
 Console.WriteLine("How many wins to win?");
-// winsToWin = int.Parse(Console.ReadLine());
 bool parsingResult = int.TryParse(Console.ReadLine(), out int winsToWin);
 if (!parsingResult)
 {
@@ -12,10 +11,6 @@ if (!parsingResult)
 
 Console.WriteLine(winsToWin);
 
-// bool isPlaying = true;
-
-//while (isPlaying)
-// while(!(firstPlayerPoints >= 3 || secondPlayerPoints >= 3))
 while(firstPlayerPoints < winsToWin && secondPlayerPoints < winsToWin)
 {
 	Console.WriteLine("Provide sign player 1");
@@ -65,14 +60,7 @@ while(firstPlayerPoints < winsToWin && secondPlayerPoints < winsToWin)
 		Console.WriteLine("player 2 won");
 	}
 
-	//Console.WriteLine("[Player 1] " + firstPlayerPoints + " : " + secondPlayerPoints + " [Player 2]");
 	Console.WriteLine($"[Player 1] {firstPlayerPoints} : {secondPlayerPoints} [Player 2]");
-
-	// if (firstPlayerPoints >= 3 || secondPlayerPoints >= 3)
-	// {
-	// 	// break;
-	// 	isPlaying = false;
-	// }
 }
 
 Console.WriteLine("kthxbye");
