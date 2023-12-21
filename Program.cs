@@ -2,7 +2,15 @@
 int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
 
-int winsToWin = 3;
+Console.WriteLine("How many wins to win?");
+// winsToWin = int.Parse(Console.ReadLine());
+bool parsingResult = int.TryParse(Console.ReadLine(), out int winsToWin);
+if (!parsingResult)
+{
+	winsToWin = 3;
+}
+
+Console.WriteLine(winsToWin);
 
 // bool isPlaying = true;
 
