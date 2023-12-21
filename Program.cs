@@ -1,6 +1,15 @@
-﻿string[] availableSigns = {"rock", "paper", "scissors"};
+﻿string[] availableSigns = { "rock", "paper", "scissors" };
 int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
+bool playingSolo = true;
+
+Random rng = new Random();
+
+// for (int i = 0; i < 10; i++)
+// {
+// 	int randomNumber = rng.Next(3);
+// 	Console.WriteLine(randomNumber);
+// }
 
 Console.WriteLine("How many wins to win?");
 bool parsingResult = int.TryParse(Console.ReadLine(), out int winsToWin);
@@ -11,7 +20,7 @@ if (!parsingResult)
 
 Console.WriteLine(winsToWin);
 
-while(firstPlayerPoints < winsToWin && secondPlayerPoints < winsToWin)
+while (firstPlayerPoints < winsToWin && secondPlayerPoints < winsToWin)
 {
 	Console.WriteLine("Provide sign player 1");
 	string? firstSign = Console.ReadLine()?.ToLower().Trim();
@@ -27,24 +36,37 @@ while(firstPlayerPoints < winsToWin && secondPlayerPoints < winsToWin)
 		break;
 	}
 
-	Console.WriteLine("Provide sign player 2");
-	string? secondSign = Console.ReadLine()?.ToLower().Trim();
+	string? secondSign;
 
-	while (!availableSigns.Contains(secondSign) && secondSign != "quit")
+	if (playingSolo)
 	{
-		Console.WriteLine("wrong sign");
-		secondSign = Console.ReadLine()?.ToLower().Trim();
+		int signIndex = rng.Next(availableSigns.Length);
+		secondSign = availableSigns[signIndex];
+		Console.WriteLine($"Computer chose {secondSign}");
+
+		// secondSign = availableSigns[rng.Next(availableSigns.Length)];
 	}
-
-	if (secondSign == "quit")
+	else
 	{
-		break;
+		Console.WriteLine("Provide sign player 2");
+		secondSign = Console.ReadLine()?.ToLower().Trim();
+
+		while (!availableSigns.Contains(secondSign) && secondSign != "quit")
+		{
+			Console.WriteLine("wrong sign");
+			secondSign = Console.ReadLine()?.ToLower().Trim();
+		}
+
+		if (secondSign == "quit")
+		{
+			break;
+		}
 	}
 
 	int secondSignIndex = Array.IndexOf(availableSigns, secondSign);
 	int spswi = (secondSignIndex + 1) % availableSigns.Length;
 	string secondSignWinningSign = availableSigns[spswi];
-	
+
 	if (firstSign == secondSign)
 	{
 		Console.WriteLine("It's a draw");
