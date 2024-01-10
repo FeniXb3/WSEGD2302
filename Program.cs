@@ -1,7 +1,15 @@
-﻿string[] availableSigns = { "rock", "paper", "scissors" };
+﻿using System;
+using System.Linq;
+
+string[] availableSigns = { "rock", "paper", "scissors" };
 int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
-bool playingSolo = true;
+bool playingSolo = false;
+
+Console.WriteLine("What's your name, player 1?");
+string firstPlayerName = Console.ReadLine();
+Console.WriteLine("What's your name, player 2?");
+string secondPlayerName = Console.ReadLine();
 
 Random rng = new Random();
 
@@ -22,21 +30,13 @@ Console.WriteLine(winsToWin);
 
 while (firstPlayerPoints < winsToWin && secondPlayerPoints < winsToWin)
 {
-	Console.WriteLine("Provide sign player 1");
-	string? firstSign = Console.ReadLine()?.ToLower().Trim();
-
-	while (!availableSigns.Contains(firstSign) && firstSign != "quit")
-	{
-		Console.WriteLine("wrong sign");
-		firstSign = Console.ReadLine()?.ToLower().Trim();
-	}
-
+	string firstSign = GetSign(firstPlayerName);
 	if (firstSign == "quit")
 	{
 		break;
 	}
 
-	string? secondSign;
+	string secondSign;
 
 	if (playingSolo)
 	{
@@ -48,14 +48,7 @@ while (firstPlayerPoints < winsToWin && secondPlayerPoints < winsToWin)
 	}
 	else
 	{
-		Console.WriteLine("Provide sign player 2");
-		secondSign = Console.ReadLine()?.ToLower().Trim();
-
-		while (!availableSigns.Contains(secondSign) && secondSign != "quit")
-		{
-			Console.WriteLine("wrong sign");
-			secondSign = Console.ReadLine()?.ToLower().Trim();
-		}
+		secondSign = GetSign(secondPlayerName);
 
 		if (secondSign == "quit")
 		{
@@ -74,17 +67,30 @@ while (firstPlayerPoints < winsToWin && secondPlayerPoints < winsToWin)
 	else if (firstSign == secondSignWinningSign)
 	{
 		firstPlayerPoints += 1;
-		Console.WriteLine("player 1 won");
+		Console.WriteLine($"{firstPlayerName} won");
 	}
 	else
 	{
 		secondPlayerPoints += 1;
-		Console.WriteLine("player 2 won");
+		Console.WriteLine($"{secondPlayerName} won");
 	}
 
-	Console.WriteLine($"[Player 1] {firstPlayerPoints} : {secondPlayerPoints} [Player 2]");
+	Console.WriteLine($"[{firstPlayerName}] {firstPlayerPoints} : {secondPlayerPoints} [{secondPlayerName}]");
 }
 
 Console.WriteLine("kthxbye");
 Console.WriteLine("Press any key to close");
 Console.ReadKey();
+
+string GetSign(string playerName)
+{
+	Console.WriteLine($"Provide sign {playerName}");
+	string sign = Console.ReadLine()?.ToLower().Trim();
+
+	while (!availableSigns.Contains(sign) && sign != "quit")
+	{
+		Console.WriteLine("wrong sign");
+		sign = Console.ReadLine()?.ToLower().Trim();
+	}
+	return sign;
+}
