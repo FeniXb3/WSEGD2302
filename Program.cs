@@ -6,10 +6,8 @@ int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
 bool playingSolo = false;
 
-Console.WriteLine("What's your name, player 1?");
-string firstPlayerName = Console.ReadLine();
-Console.WriteLine("What's your name, player 2?");
-string secondPlayerName = Console.ReadLine();
+string firstPlayerName = GetName(1);
+string secondPlayerName = GetName(2);
 
 Random rng = new Random();
 
@@ -82,15 +80,24 @@ Console.WriteLine("kthxbye");
 Console.WriteLine("Press any key to close");
 Console.ReadKey();
 
+string GetName(int playerNumber)
+{
+	Console.WriteLine($"What's your name, player {playerNumber}?");
+	// string name = Console.ReadLine() ?? $"Player {playerNumber}";
+	string? input = Console.ReadLine();
+
+	return string.IsNullOrWhiteSpace(input) ? $"Player {playerNumber}" : input;
+}
+
 string GetSign(string playerName)
 {
 	Console.WriteLine($"Provide sign {playerName}");
-	string sign = Console.ReadLine()?.ToLower().Trim();
+	string sign = Console.ReadLine()?.ToLower().Trim() ?? string.Empty;
 
 	while (!availableSigns.Contains(sign) && sign != "quit")
 	{
 		Console.WriteLine("wrong sign");
-		sign = Console.ReadLine()?.ToLower().Trim();
+		sign = Console.ReadLine()?.ToLower().Trim() ?? string.Empty;
 	}
 	return sign;
 }
